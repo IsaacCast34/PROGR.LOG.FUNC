@@ -18,3 +18,11 @@ main = do
   print listaOriginal
   putStrLn "Lista duplicada:"
   print listaDuplicada
+
+RESULTADO:
+Ok, one module loaded.
+ghci> Lista original:
+[1,2,3,4,5]
+Lista duplicada:
+[2,4,6,8,10]
+ghci> 
