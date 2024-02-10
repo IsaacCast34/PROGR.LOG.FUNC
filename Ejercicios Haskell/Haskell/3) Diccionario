@@ -1,0 +1,13 @@
+import qualified Data.Map as Map
+
+-- Función para contar la longitud de cada palabra en una frase
+contarLongitudes :: String -> Map.Map String Int
+contarLongitudes frase = Map.fromListWith (+) [(palabra, length palabra) | palabra <- palabras]
+    where palabras = words frase  -- Separa la frase en palabras
+
+-- Ejemplo de uso
+main :: IO ()
+main = do
+    let frase = "Hola mundo, este es un ejemplo"
+        diccionario = contarLongitudes frase
+    print diccionario
