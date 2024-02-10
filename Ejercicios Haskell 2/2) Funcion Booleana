@@ -1,0 +1,22 @@
+filtrar :: (a -> Bool) -> [a] -> [a]
+filtrar _ [] = [] -- Caso base: lista vacía, no hay elementos que filtrar
+filtrar f (x:xs)
+    | f x       = x : filtrar f xs -- Si la función devuelve True para x, lo incluimos en la lista resultante
+    | otherwise = filtrar f xs     -- Si no, lo excluimos y continuamos con el resto de la lista
+
+-- Ejemplo de uso:
+-- Supongamos una función booleana que filtra los números pares
+esPar :: Int -> Bool
+esPar x = x `mod` 2 == 0
+
+-- Utilizamos nuestra función de filtrado para obtener los números pares de una lista
+main :: IO ()
+main = do
+    let listaOriginal = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    let listaFiltrada = filtrar esPar listaOriginal
+    print listaFiltrada -- Esto imprimirá [2,4,6,8,10]
+
+RESULTADO:
+Ok, one module loaded.
+ghci> [2,4,6,8,10]
+ghci> 
