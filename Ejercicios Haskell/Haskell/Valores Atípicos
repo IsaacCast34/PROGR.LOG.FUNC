@@ -30,3 +30,8 @@ main = do
       atipicos = outliers sample
   putStrLn "Valores atípicos:"
   print atipicos
+
+RESULTADO: 
+Ok, one module loaded.
+ghci> Valores atípicos:
+[1000.0]
