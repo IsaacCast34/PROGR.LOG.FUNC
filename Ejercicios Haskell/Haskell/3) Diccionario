@@ -11,3 +11,8 @@ main = do
     let frase = "Hola mundo, este es un ejemplo"
         diccionario = contarLongitudes frase
     print diccionario
+
+RESULTADO:
+Ok, one module loaded.
+ghci> fromList [("Hola",4),("ejemplo",7),("es",2),("este",4),("mundo,",6),("un",2)]
+ghci> ghc: signal: 1
