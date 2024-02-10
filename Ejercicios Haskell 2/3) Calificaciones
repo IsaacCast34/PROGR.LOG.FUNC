@@ -1,0 +1,28 @@
+import Data.Char (toUpper)
+
+type Asignatura = String
+type Nota = Int
+type Calificacion = String
+type DiccionarioNotas = [(Asignatura, Nota)]
+type DiccionarioCalificaciones = [(Asignatura, Calificacion)]
+
+-- Función para obtener la calificación según la nota
+obtenerCalificacion :: Nota -> Calificacion
+obtenerCalificacion nota
+    | nota >= 95 && nota <= 100 = "Excelente"
+    | nota >= 85 && nota <= 94  = "Notable"
+    | nota >= 75 && nota <= 84  = "Bueno"
+    | nota >= 70 && nota <= 74  = "Suficiente"
+    | otherwise                 = "Desempeño insuficiente"
+
+-- Función para convertir las asignaturas a mayúsculas y filtrar las calificaciones aprobadas
+convertirCalificaciones :: DiccionarioNotas -> DiccionarioCalificaciones
+convertirCalificaciones diccionario =
+    [(map toUpper asignatura, obtenerCalificacion nota) | (asignatura, nota) <- diccionario, nota >= 70]
+
+-- Ejemplo de uso
+main :: IO ()
+main = do
+    let diccionarioNotas = [("Matematicas", 85), ("Fisica", 65), ("Programacion", 95)]
+        diccionarioCalificaciones = convertirCalificaciones diccionarioNotas
+    print diccionarioCalificaciones
