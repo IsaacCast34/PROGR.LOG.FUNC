@@ -1,0 +1,35 @@
+type Price = Float
+type Percentage = Float
+type Product = String
+type Basket = [(Product, Price)]
+
+-- Función para aplicar un descuento a un precio
+applyDiscount :: Price -> Percentage -> Price
+applyDiscount price discountPercentage = price - (price * discountPercentage / 100)
+
+-- Función para aplicar el IVA a un precio
+applyVAT :: Price -> Percentage -> Price
+applyVAT price vatPercentage = price + (price * vatPercentage / 100)
+
+-- Función para aplicar descuento o IVA a los productos de la cesta y devolver el precio final
+applyDiscountOrVAT :: [(Product, Price)] -> (Price -> Percentage -> Price) -> Percentage -> Price
+applyDiscountOrVAT [] _ _ = 0
+applyDiscountOrVAT ((_, price):xs) func percentage = func price percentage + applyDiscountOrVAT xs func percentage
+
+-- Ejemplo de uso:
+-- Diccionario de precios y porcentajes de una cesta de la compra
+basket :: Basket
+basket = [("Leche", 1.5), ("Pan", 2.0), ("Huevos", 3.0)]
+
+-- Función para aplicar un descuento del 10%
+discountedPrice :: Price
+discountedPrice = applyDiscountOrVAT basket applyDiscount 10
+
+-- Función para aplicar el IVA del 5%
+priceWithVAT :: Price
+priceWithVAT = applyDiscountOrVAT basket applyVAT 5
+
+main :: IO ()
+main = do
+    putStrLn $ "Precio final con descuento: " ++ show discountedPrice
+    putStrLn $ "Precio final con IVA: " ++ show priceWithVAT
