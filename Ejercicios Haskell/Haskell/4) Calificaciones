@@ -23,3 +23,8 @@ main :: IO ()
 main = do
     let calificaciones = procesarNotas notasAlumno
     print calificaciones
+
+RESULTADOS:
+Ok, one module loaded.
+ghci> [("MATEMATICAS","Notable"),("CIENCIAS","Bueno"),("HISTORIA","Desempe\241o insuficiente")]
+ghci> ^Cghci> Leaving GHCi.
