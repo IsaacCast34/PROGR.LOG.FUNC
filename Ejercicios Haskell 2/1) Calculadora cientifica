@@ -31,3 +31,21 @@ main = do
     putStrLn "Introduce el valor máximo para la tabla:"
     value <- readLn
     generateTable funcName value
+
+RESULTADOS: 
+Ok, one module loaded.
+ghci> Bienvenido a la calculadora científica en Haskell.
+Por favor, introduce la función a aplicar (sin, cos, tan, exp, log):
+sin     
+Introduce el valor máximo para la tabla:
+5
+Tabla de valores para la función sin:
+---------------------------------------------
+   Valor   |   Resultado   
+---------------------------------------------
+     1.00  |      0.841471
+     2.00  |      0.909297
+     3.00  |      0.141120
+     4.00  |     -0.756802
+     5.00  |     -0.958924
+ghci> 
