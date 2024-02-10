@@ -1,0 +1,32 @@
+import Data.List (sort)
+
+-- Calcula la media de una lista de números
+mean :: [Double] -> Double
+mean xs = sum xs / fromIntegral (length xs)
+
+-- Calcula la desviación estándar de una lista de números
+stdDev :: [Double] -> Double
+stdDev xs =
+  let mu = mean xs
+      n = fromIntegral (length xs)
+      squaredDiffs = map (\x -> (x - mu) ^ 2) xs
+  in sqrt (sum squaredDiffs / n)
+
+-- Calcula la puntuación típica de un número dado una muestra y sus estadísticas
+zScore :: Double -> Double -> Double -> Double
+zScore x mu sigma = (x - mu) / sigma
+
+-- Encuentra los valores atípicos en una muestra de números
+outliers :: [Double] -> [Double]
+outliers xs =
+  let mu = mean xs
+      sigma = stdDev xs
+      zScores = map (\x -> zScore x mu sigma) xs
+  in [x | (x, z) <- zip xs zScores, abs z > 2]
+-- Ejemplo de uso:
+main :: IO ()
+main = do
+  let sample = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1000]
+      atipicos = outliers sample
+  putStrLn "Valores atípicos:"
+  print atipicos
