@@ -1,0 +1,33 @@
+import Text.Printf
+
+-- Funciones para calcular seno, coseno, tangente, exponencial y logaritmo neperiano
+functions :: String -> Double -> Double
+functions "sin" x = sin x
+functions "cos" x = cos x
+functions "tan" x = tan x
+functions "exp" x = exp x
+functions "log" x = log x
+functions _ _     = error "Función no válida"
+
+-- Genera la tabla con los resultados
+generateTable :: String -> Double -> IO ()
+generateTable funcName value = do
+    putStrLn $ "Tabla de valores para la función " ++ funcName ++ ":"
+    putStrLn "---------------------------------------------"
+    putStrLn "   Valor   |   Resultado   "
+    putStrLn "---------------------------------------------"
+    mapM_ (printRow funcName) [1..value]
+
+-- Imprime cada fila de la tabla
+printRow :: String -> Double -> IO ()
+printRow funcName x = printf "%9.2f  |  %12.6f\n" x (functions funcName x)
+
+-- Función principal
+main :: IO ()
+main = do
+    putStrLn "Bienvenido a la calculadora científica en Haskell."
+    putStrLn "Por favor, introduce la función a aplicar (sin, cos, tan, exp, log):"
+    funcName <- getLine
+    putStrLn "Introduce el valor máximo para la tabla:"
+    value <- readLn
+    generateTable funcName value
