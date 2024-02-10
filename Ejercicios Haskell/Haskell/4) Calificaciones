@@ -1,0 +1,25 @@
+import Data.Char (toUpper)
+
+-- Función para convertir una nota en su calificación correspondiente
+calificar :: Int -> String
+calificar nota
+    | nota >= 95 && nota <= 100 = "Excelente"
+    | nota >= 85 && nota <= 94  = "Notable"
+    | nota >= 75 && nota <= 84  = "Bueno"
+    | nota >= 70 && nota <= 74  = "Suficiente"
+    | otherwise                 = "Desempeño insuficiente"
+
+-- Función para procesar el diccionario de asignaturas y notas
+procesarNotas :: [(String, Int)] -> [(String, String)]
+procesarNotas [] = []
+procesarNotas ((asignatura, nota):resto) =
+    (map toUpper asignatura, calificar nota) : procesarNotas resto
+
+-- Ejemplo de uso
+notasAlumno :: [(String, Int)]
+notasAlumno = [("Matematicas", 90), ("Ciencias", 78), ("Historia", 60)]
+
+main :: IO ()
+main = do
+    let calificaciones = procesarNotas notasAlumno
+    print calificaciones
