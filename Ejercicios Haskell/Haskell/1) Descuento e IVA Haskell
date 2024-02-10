@@ -33,3 +33,9 @@ main :: IO ()
 main = do
     putStrLn $ "Precio final con descuento: " ++ show discountedPrice
     putStrLn $ "Precio final con IVA: " ++ show priceWithVAT
+
+RESULTADO: 
+Ok, one module loaded.
+ghci> Precio final con descuento: 5.85
+Precio final con IVA: 6.825
+ghci> 
