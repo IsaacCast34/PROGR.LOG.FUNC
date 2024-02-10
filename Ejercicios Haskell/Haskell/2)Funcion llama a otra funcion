@@ -1,0 +1,20 @@
+aplicarFuncion :: (a -> b) -> [a] -> [b]
+aplicarFuncion _ [] = []  -- Caso base: lista vacía, devuelve lista vacía
+aplicarFuncion f (x:xs) = f x : aplicarFuncion f xs  -- Aplica la función al primer elemento y recursivamente a los demás
+
+-- Ejemplo de uso
+duplicar :: Int -> Int
+duplicar x = x * 2
+
+listaOriginal :: [Int]
+listaOriginal = [1, 2, 3, 4, 5]
+
+listaDuplicada :: [Int]
+listaDuplicada = aplicarFuncion duplicar listaOriginal
+
+main :: IO ()
+main = do
+  putStrLn "Lista original:"
+  print listaOriginal
+  putStrLn "Lista duplicada:"
+  print listaDuplicada
