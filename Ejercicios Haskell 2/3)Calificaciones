@@ -1,0 +1,21 @@
+calificacionALetra :: [Int] -> [String]
+calificacionALetra calificaciones = map categoria calificaciones
+  where
+    categoria calificacion
+      | calificacion >= 95 && calificacion <= 100 = "Excelente"
+      | calificacion >= 85 && calificacion <= 94  = "Notable"
+      | calificacion >= 75 && calificacion <= 84  = "Bueno"
+      | calificacion >= 70 && calificacion <= 74  = "Suficiente"
+      | otherwise                                 = "Desempeño insuficiente"
+
+-- Ejemplo de uso
+main :: IO ()
+main = do
+  let calificaciones = [80, 95, 60, 70, 85]
+  let calificacionesConvertidas = calificacionALetra calificaciones
+  print calificacionesConvertidas
+
+  RESULTADO:
+  Ok, one module loaded.
+ghci> ["Bueno","Excelente","Desempe\241o insuficiente","Suficiente","Notable"]
+ghci> 
