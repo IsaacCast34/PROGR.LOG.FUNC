@@ -1,0 +1,15 @@
+module Main where
+
+import Text.Printf
+
+type Vector = (Double, Double)
+
+-- Función para calcular el módulo de un vector
+moduloVector :: Vector -> Double
+moduloVector (x, y) = sqrt (x * x + y * y)
+
+main :: IO ()
+main = do
+    -- Ejemplo de uso
+    let vector = (3.0, 4.0)  -- Vector (3, 4)
+    printf "El módulo del vector (%.1f, %.1f) es: %.2f\n" (fst vector) (snd vector) (moduloVector vector)
