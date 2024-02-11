@@ -1,0 +1,31 @@
+data Inmueble = Inmueble { año :: Int
+                         , metros :: Int
+                         , habitaciones :: Int
+                         , garaje :: Bool
+                         , zona :: Char
+                         } deriving (Show)
+
+-- Función para calcular el precio de un inmueble en función de su zona y antigüedad
+calcularPrecio :: Inmueble -> Float
+calcularPrecio inmueble
+    | zona inmueble == 'A' = fromIntegral (metros inmueble * 1000 + habitaciones inmueble * 5000 + if garaje inmueble then 15000 else 0) * (1 - fromIntegral (2024 - año inmueble) / 100)
+    | zona inmueble == 'B' = fromIntegral (metros inmueble * 1000 + habitaciones inmueble * 5000 + if garaje inmueble then 15000 else 0) * (1 - fromIntegral (2024 - año inmueble) / 100) * 1.5
+    | otherwise = error "Zona desconocida"
+
+-- Función para filtrar inmuebles según un presupuesto dado
+buscarPorPresupuesto :: [Inmueble] -> Float -> [Inmueble]
+buscarPorPresupuesto inmuebles presupuesto = filter (\x -> calcularPrecio x <= presupuesto) inmuebles
+
+-- Ejemplo de uso
+main :: IO ()
+main = do
+    let inmuebles = [ Inmueble 2000 100 3 True 'A'
+                    , Inmueble 2012 60 2 True 'B'
+                    , Inmueble 1980 120 4 False 'A'
+                    , Inmueble 2005 75 3 True 'B'
+                    , Inmueble 2015 90 2 False 'A'
+                    ]
+    let presupuesto = 100000  -- Presupuesto dado
+    let inmueblesFiltrados = buscarPorPresupuesto inmuebles presupuesto
+    putStrLn "Inmuebles encontrados:"
+    mapM_ print inmueblesFiltrados
