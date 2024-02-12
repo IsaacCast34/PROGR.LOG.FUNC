@@ -16,15 +16,7 @@ calcularPrecio inmueble
 buscarPorPresupuesto :: [Inmueble] -> Float -> [Inmueble]
 buscarPorPresupuesto inmuebles presupuesto = filter (\x -> calcularPrecio x <= presupuesto) inmuebles
 
--- Ejemplo de uso
-main :: IO ()
-main = do
-    let inmuebles = [ Inmueble 2000 100 3 True 'A'
-                    , Inmueble 2012 60 2 True 'B'
-                    , Inmueble 1980 120 4 False 'A'
-                    , Inmueble 2005 75 3 True 'B'
-                    , Inmueble 2015 90 2 False 'A'
-                    ]
+
     let presupuesto = 100000  -- Presupuesto dado
     let inmueblesFiltrados = buscarPorPresupuesto inmuebles presupuesto
     putStrLn "Inmuebles encontrados:"
